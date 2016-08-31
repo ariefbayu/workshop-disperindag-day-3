@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="172dp"
+        android:layout_height="178dp"
+        app:srcCompat="@drawable/dg1"
+        android:id="@+id/imageView" />
+
+    <TextView
+        android:text="Text diantara gambar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:textAlignment="viewStart" />
+
+    <ImageView
+        android:layout_width="179dp"
+        android:layout_height="163dp"
+        app:srcCompat="@drawable/dg2"
+        android:id="@+id/imageView2" />
+    <Button
+        android:id="@+id/btnbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="custom button"/>
+</LinearLayout>
