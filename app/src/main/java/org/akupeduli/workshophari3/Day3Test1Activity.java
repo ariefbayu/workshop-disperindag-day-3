@@ -26,18 +26,24 @@ public class Day3Test1Activity extends AppCompatActivity {
         ((Button)findViewById(R.id.button19)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //kita buat intent untuk membuka halaman detail
                 Intent intent = new Intent(Day3Test1Activity.this,
                         Day3TestDetailActivity.class);
 
+                //cek ID button mana yang terpilih
                 int checkId = grupWisata.getCheckedRadioButtonId();
                 String mode = "";
+                //berdasarkan ID button yg terpilih, kita set mode dengan
+                //membandingkan dengan ID dari radio button
                 if(checkId == radioAir.getId()){
                     mode = "mata-air";
                 }
                 if(checkId == radioPantai.getId()){
                     mode = "pantai";
                 }
+                //pasang mode ke intent agar bisa dibaca di activity detail
                 intent.putExtra("mode", mode);
+                //start activity detail dengan code INTENT_CODE_DETAIL
                 startActivityForResult(intent, INTENT_CODE_DETAIL);
             }
         });
@@ -46,7 +52,19 @@ public class Day3Test1Activity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        TextView textDetail = (TextView)findViewById(R.id.textDetail);
-        textDetail.setText("Detail grup yang anda pilih: " + data.getStringExtra("result"));
+
+        //cek apakah intent code sama
+        if(requestCode == INTENT_CODE_DETAIL){
+            //cek apakah hasil selesai
+            if(resultCode == RESULT_OK){
+                TextView textDetail = (TextView)findViewById(R.id.textDetail);
+                //kita simpan data kembalian dari string extra
+                String dataKembalian = data.getStringExtra("result");
+                //lalu ditampilkan
+                textDetail.setText("Detail grup yang anda pilih: " + dataKembalian);
+
+            }
+        }
+
     }
 }

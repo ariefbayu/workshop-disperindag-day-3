@@ -16,12 +16,16 @@ public class Day3TestDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day3_test_detail);
 
+        //inisialisasi checkbox untuk dipakai di bawah
         checkSendangBiru = (CheckBox)findViewById(R.id.checkSendangBiru);
         checkGoaCina = (CheckBox)findViewById(R.id.checkGoacina);
         checkMaron = (CheckBox)findViewById(R.id.checkMaron);
         checkPitu = (CheckBox)findViewById(R.id.checkPitu);
 
+        //membaca mode dari intent utama
         mode = getIntent().getStringExtra("mode");
+
+        //berdasarkan mode, kita hide layout yang tidak dibutuhkan
         if(mode.equals("mata-air")){
             ((LinearLayout)findViewById(R.id.layoutPantai)).setVisibility(View.GONE);
         } else if(mode.equals("pantai")){
@@ -32,6 +36,8 @@ public class Day3TestDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String result = "";
+
+                //berdasarkan mode, kita simpan hasil dari checkbox yang dipilih
                 if(mode.equals("pantai")){
                     if(checkSendangBiru.isChecked()){
                         result += "Sendang Biru, ";
@@ -48,9 +54,15 @@ public class Day3TestDetailActivity extends AppCompatActivity {
                     }
                 }
 
+                //ambil intent dan kita isikan extra `result` dengan
+                //data hasil checkbox yang terpilih
                 Intent intent = getIntent();
                 intent.putExtra("result", result);
+
+                //set result ke RESULT_OK dan pasang intent yang sudah diberi `result`
                 setResult(RESULT_OK, intent);
+
+                //finish untuk menutup activity dan kembali ke activity sebelumnya
                 finish();
             }
         });
